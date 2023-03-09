@@ -11,7 +11,7 @@ module.exports = {
     const { q } = req.query;
 
     try {
-      // Make a request to the Google Books API to search for books
+      // Make a request to the Google Books API to search for books bruh
       const response = await axios.get('https://www.googleapis.com/books/v1/volumes', {
         params: {
           q,
