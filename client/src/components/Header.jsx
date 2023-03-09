@@ -1,8 +1,30 @@
-import { useAppCtx } from "../utils/AppContext"
+import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 
-const Header = () => {
-  const { user, location } = useAppCtx()
+
+const BookSearch = () => {
+  const [bookData, setBookData] = useState([]);
+  const [current, setCurrent] = useState([])
+  const [search, setSearch] = useState("");
   
+  const handleInputChange = (e) => {
+    setSearch(e.target.value);
+  }
+
+  const update = async (e) => {
+    e.preventDefault();
+    const resp = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${search}`);
+    const data = await resp.json();
+    setCurrent(data.items);
+  }
+
+  useEffect(() => {
+    setBookData(current)
+  }, [search])
+
+  
+
   return (
     <header className="px-2 pb-0 mb-0" style={{ borderBottom: "1px solid #333" }}>
       <nav className="navbar navbar-dark navbar-expand-md bg-body-secondary" data-bs-theme="dark">
@@ -40,12 +62,16 @@ const Header = () => {
               )}
               {/* test */}
             </ul>
+
           </div>
-        </div>
-      </nav>
-    </header>
-  )
+          <div className="form-group">
+            <button className="btn btn-primary">Search</button>
+          </div>
+      </form>
+      {(bookData !== []) && (<p>{bookData[0].id}</p>)}
+    </div>
+    
+  );
 }
 
-
-export default Header
+export default BookSearch;
