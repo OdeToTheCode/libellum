@@ -12,7 +12,6 @@ function App() {
     <AppProvider>
       <BrowserRouter>
         {/* <Wrapper> */}
-          <Header />
           <div className="pt-3 px-4">
             <Routes>
               <Route path="/" element={<HomePage />} />
