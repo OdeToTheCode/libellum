@@ -1,11 +1,9 @@
 import React from "react";
-import { useEffect } from "react";
 import { useState } from "react";
 
 
 const BookSearch = () => {
   const [bookData, setBookData] = useState([]);
-  const [current, setCurrent] = useState([])
   const [search, setSearch] = useState("");
   
   const handleInputChange = (e) => {
@@ -16,13 +14,9 @@ const BookSearch = () => {
     e.preventDefault();
     const resp = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${search}`);
     const data = await resp.json();
-    setCurrent(data.items);
+    setBookData(data.items);
+    console.log(bookData);
   }
-
-  useEffect(() => {
-    setBookData(current)
-  }, [search])
-
   
 
   return (
@@ -43,8 +37,13 @@ const BookSearch = () => {
             <button className="btn btn-primary">Search</button>
           </div>
       </form>
-      {(bookData !== []) && (<p>{bookData[0].id}</p>)}
+      {(bookData.length !== 0) && (<p>{bookData[0].volumeInfo.title}</p>)}
+      {(bookData.length !== 0) && (<p>{bookData[0].volumeInfo.subtitle}</p>)}
+      {(bookData.length !== 0) && (<p>{bookData[0].volumeInfo.authors[0]}</p>)}
+      {(bookData.length !== 0) && (<p>{bookData[0].searchInfo.textSnippet}</p>)}
+      {(bookData.length !== 0) && (<img src={bookData[0].volumeInfo.imageLinks.thumbnail}/>)}
     </div>
+    // </div>
     
   );
 }
