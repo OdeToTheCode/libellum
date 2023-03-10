@@ -19,8 +19,9 @@ const HomePage = () => {
 
   return (
     <>
-      <BookSearch />
+
       <div style={{ display: "flex", flexDirection: "row", overflowY: "hidden", minWidth: "100%" }}>
+
         {loading && <p>Loading...</p>}
         {error && <p>{error}</p>}
         {books.map((book) => (

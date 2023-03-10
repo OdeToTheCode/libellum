@@ -4,8 +4,8 @@ import "../assets/css/search.css"
 import Container from 'react-bootstrap/Container';
 
 
-const BookSearch = () => {
-  const [bookData, setBookData] = useState([]);
+const BookSearch = ({ bookData, setBookData }) => {
+
   const [search, setSearch] = useState("");
 
   const handleInputChange = (e) => {
