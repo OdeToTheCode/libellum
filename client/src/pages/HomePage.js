@@ -2,7 +2,6 @@ import { useEffect, useState } from "react"
 import { BookSearch } from "../components"
 import axios from "axios"
 
-
 // here we are going to create a search bar that will allow the user to search for books
 // we will also create a button that will allow the user to add the book to their library
 // we will also create content to populate the page with the books that the user has added to their library
@@ -69,7 +68,6 @@ const HomePage = () => {
 
   return (
     <>
-      < BookSearch />
       <div> 
 
         {loading && <p>Loading...</p>}

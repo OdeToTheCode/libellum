@@ -5,9 +5,11 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import cart from "../assets/images/cart.png";
 import "../assets/css/nav.css"
 import BookSearch from "./BookSearch";
+import { useState } from "react"
 
 
-function Navigation(props) {
+function Navigation({ bookData, setBookData }) {
+  const [bookDataNav, setBookDataNav] = useState(bookData);
     return (
       <div>
       <Navbar bg="light" expand="lg">
@@ -21,7 +23,7 @@ function Navigation(props) {
               <Nav.Link href="#link"><img className="cart" src={cart}></img></Nav.Link>
             </Nav>
           </Navbar.Collapse>
-          <BookSearch />
+          <BookSearch bookData={bookDataNav} setBookData={setBookDataNav}/>
         </Container>
       </Navbar>
       </div>
