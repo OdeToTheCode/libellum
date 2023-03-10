@@ -4,7 +4,7 @@ import cookie from "js-cookie"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/global.css'
 
-const LoginSignupPage = (props) => {
+const LoginSignup = (props) => {
 
   //SIGNUP LOGIC
   const signup = { email: "", password: "" }
@@ -163,4 +163,4 @@ const LoginSignupPage = (props) => {
 
 }
 
-export default LoginSignupPage
+export default LoginSignup
