@@ -44,7 +44,7 @@ const shoppingCartSchema = new Schema(
   }
 );
 
-shoppingCartLength
+shoppingCart
   .virtual("getShoppingCartLength")
   .get(function () {
     return this.items.legnth;
