@@ -17,9 +17,9 @@ function App() {
           <div className="pt-3 px-4">
             <Routes>
               <Route path="/" element={<HomePage />} />
-              <Route path="/login" element={<LoginPage />} />
+              <Route path="/login" element={<LoginSignupPage />} />
               <Route path="/profile" element={<ProfilePage />} />
-              <Route path="/signup" element={<SignupPage />} />
+              <Route path="/signup" element={<LoginSignupPage />} />
               <Route path="*" element={<div>404</div>} />
             </Routes>
           </div>
