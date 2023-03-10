@@ -1,11 +1,13 @@
 import React from "react";
 import { useState } from "react";
+import "../assets/css/search.css"
+import Container from 'react-bootstrap/Container';
 
 
 const BookSearch = () => {
   const [bookData, setBookData] = useState([]);
   const [search, setSearch] = useState("");
-  
+
   const handleInputChange = (e) => {
     setSearch(e.target.value);
   }
@@ -17,34 +19,28 @@ const BookSearch = () => {
     setBookData(data.items);
     console.log(bookData);
   }
-  
+
 
   return (
     <div>
-      <h1>Book Search</h1>
-      <form onSubmit={update} className="mb-2">
-          <div className="form-group mb-2">
-            <label>Search</label>
-            <input 
-              type="text" 
-              className="form-control" 
-              name="bookSearch" 
-              value={search} 
+      <Container fluid className="searchBar">
+        <form onSubmit={update} className="mb-2 searchEl">
+          <div className="form-group mb-2 searchText">
+            <input
+              type="text"
+              className="form-control"
+              name="bookSearch"
+              value={search}
               onChange={handleInputChange}
             />
           </div>
-          <div className="form-group">
+          <div className="form-group searchButton">
             <button className="btn btn-primary">Search</button>
           </div>
-      </form>
-      {(bookData.length !== 0) && (<p>{bookData[0].volumeInfo.title}</p>)}
-      {(bookData.length !== 0) && (<p>{bookData[0].volumeInfo.subtitle}</p>)}
-      {(bookData.length !== 0) && (<p>{bookData[0].volumeInfo.authors[0]}</p>)}
-      {(bookData.length !== 0) && (<p>{bookData[0].searchInfo.textSnippet}</p>)}
-      {(bookData.length !== 0) && (<img src={bookData[0].volumeInfo.imageLinks.thumbnail}/>)}
+        </form>
+      </Container >
     </div>
-    // </div>
-    
+
   );
 }
 
