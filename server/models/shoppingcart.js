@@ -1,7 +1,12 @@
 const {Schema, model} = require ("mongoose");
-
+const User = require("./User")
 const shoppingCartSchema = new Schema(
   {
+
+    User: {
+    type: string,
+    id: User.id,
+    },
     items: {
       type: Array, 
       name: string,
