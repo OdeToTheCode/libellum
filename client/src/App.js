@@ -5,26 +5,42 @@ import { HomePage, SearchPage, LoginSignup } from "./pages";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./assets/css/app.css"
 import { useState, useEffect } from "react"
+import axios from "axios"
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 // import './styles/global.css'
 
 function App() {
   const [bookData, setBookData] = useState([]);
-  useEffect(() => {
+
+//   const FetchBookData = async () => {  
+//     useEffect(async () => {
+//       const response = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${search}`);
+//       const data = response.data;
+//       setBookData(data.items);
+//       console.log(bookData);
     
-  },[bookData])
+
+//     // fetchBookData();
+//   }, []);
+// }
+
+
+  // const [search, setSearch] = useState("");
+
+  // these may need to be added into the navigation route as a prop
+  // fetchBook={FetchBookData} search={search} setSearch={setSearch}
 
   return (
     <AppProvider>
       <BrowserRouter>
-        <Navigation bookData={bookData} setBookData={setBookData}/>
+        <Navigation bookData={bookData} setBookData={setBookData} />
         {/* <Wrapper> */}
           <div className="pt-3 px-4">
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/login" element={<LoginSignup />} />
-              <Route path="/explore" element={<SearchPage bookData={bookData} setBookData={setBookData}/>} />
+              <Route path="/explore" element={<SearchPage bookData={bookData} />} />
               <Route path="*" element={<div>404</div>} />
             </Routes>
           </div>
