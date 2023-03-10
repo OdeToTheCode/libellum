@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AppProvider } from "./utils/AppContext";
 import { Header, Wrapper } from "./components"
 import { HomePage, LoginPage, ProfilePage, SignupPage } from "./pages";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "./assets/css/app.css"
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 // import './styles/global.css'

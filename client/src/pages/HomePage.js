@@ -1,7 +1,8 @@
 import { useState } from "react"
 import { useAppCtx } from "../utils/AppContext"
 import useApi from "../utils/useApi"
-import { BookSearch } from "../components"
+import { BookSearch, Navigation } from "../components"
+import { SearchPage } from "../pages"
 
 
 const HomePage = () => {
@@ -9,7 +10,10 @@ const HomePage = () => {
 
   return (
     <>
-      < BookSearch />
+      {/* < Navigation /> */}
+      {/* < BookSearch /> */}
+      <SearchPage />
+
     </>
   )
 }
