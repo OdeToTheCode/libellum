@@ -6,6 +6,9 @@ import Container from 'react-bootstrap/Container';
 
 const BookSearch = ({ bookData, setBookData }) => {
 
+  // may need to add this back into the booksearch function as a prop
+  // , search, setSearch, FetchBookData 
+
   const [search, setSearch] = useState("");
 
   const handleInputChange = (e) => {
@@ -14,10 +17,13 @@ const BookSearch = ({ bookData, setBookData }) => {
 
   const update = async (e) => {
     e.preventDefault();
+   
+    
     const resp = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${search}`);
     const data = await resp.json();
     setBookData(data.items);
     console.log(bookData);
+    // fetchBookData()
   }
 
 

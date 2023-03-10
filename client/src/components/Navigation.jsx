@@ -9,7 +9,7 @@ import { useState } from "react"
 
 
 function Navigation({ bookData, setBookData }) {
-  const [bookDataNav, setBookDataNav] = useState(bookData);
+
     return (
       <div>
       <Navbar bg="light" expand="lg">
@@ -23,7 +23,7 @@ function Navigation({ bookData, setBookData }) {
               <Nav.Link href="#link"><img className="cart" src={cart}></img></Nav.Link>
             </Nav>
           </Navbar.Collapse>
-          <BookSearch bookData={bookDataNav} setBookData={setBookDataNav}/>
+          <BookSearch bookData={bookData} setBookData={setBookData}/>
         </Container>
       </Navbar>
       </div>
