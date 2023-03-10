@@ -6,7 +6,7 @@ const shoppingCartSchema = new Schema(
       type: Array, 
       name: string,
       default: true,
-    itemSchema: new Schema ( 
+    itemDetails: new Schema ( 
       {
         id:{
           type: string,
