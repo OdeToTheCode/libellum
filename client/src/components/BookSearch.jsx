@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import "../assets/css/search.css"
 import Container from 'react-bootstrap/Container';
+import defaultBookImg from "../assets/images/book.jpeg";
 
 
 const BookSearch = ({ bookData, setBookData }) => {
@@ -21,7 +22,22 @@ const BookSearch = ({ bookData, setBookData }) => {
     
     const resp = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${search}`);
     const data = await resp.json();
-    setBookData(data.items);
+    const returnedData = data.items.map (item => {
+      const authors = item.volumeInfo.authors ?? [] ;
+      const imageSource = item.volumeInfo.imageLinks ?? {
+        thumbnail: defaultBookImg
+      };
+      return {
+        id: item.id,
+        title: item.volumeInfo.title,
+        subtitle: item.volumeInfo.subtitle,
+        authors: authors,
+        description: item.volumeInfo.description,
+        image: imageSource.thumbnail,
+        price: "$15.99",
+      }
+    })
+    setBookData(returnedData);
     console.log(bookData);
     // fetchBookData()
   }

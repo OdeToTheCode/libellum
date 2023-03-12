@@ -4,19 +4,34 @@ import useApi from "../utils/useApi"
 import { BookSearch, Navigation } from "../components"
 
 
-const SearchPage = ({ bookData} ) => {
+const SearchPage = ({ bookData }) => {
 
   return (
     <>
 
 
-      <div>
-          {(bookData.length !== 0) && (<p>{bookData[0].volumeInfo.title}</p>)}
-          {(bookData.length !== 0) && (<p>{bookData[0].volumeInfo.subtitle}</p>)}
-          {(bookData.length !== 0) && (<p>{bookData[0].volumeInfo.authors[0]}</p>)}
-          {(bookData.length !== 0) && (<p>{bookData[0].searchInfo.textSnippet}</p>)}
-          {(bookData.length !== 0) && (<img src={bookData[0].volumeInfo.imageLinks.thumbnail} />)}
-        </div>
+      <section>
+        {bookData.map(book => {
+          return (
+            <div key={book.id}>
+              <div>{book.title}</div>
+              <div>{book.subtitle}</div>
+              <div>{book.authors.map(author => {
+                return (
+                  <div key={author}>
+                    <div>{author}</div>
+                  </div>
+                )
+              })}
+              </div>
+              <div>{book.description}</div>
+              <img src={book.image} />
+              <div>{book.price}</div>
+            </div>
+          )
+        })}
+
+      </section>
     </>
   )
 }
