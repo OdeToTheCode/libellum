@@ -12,6 +12,7 @@ const Cart = (props) => {
     const shoppingCart = JSON.parse(localStorage.getItem("cart"));
     setCart(shoppingCart);
   }, [cart, setCart]);
+  
   return (
     <>
       <h1>Cart</h1>

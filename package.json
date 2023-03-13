@@ -18,6 +18,9 @@
   "dependencies": {
     "bootstrap": "^5.2.3",
     "react-bootstrap": "^2.7.2",
+    "react-stripe-checkout": "^2.6.3",
+    "stripe": "^11.14.0",
+    "react-router-dom": "^6.9.0",
     "uuid": "^9.0.0"
   }
 }
