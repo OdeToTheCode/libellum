@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AppProvider } from "./utils/AppContext";
 import { Header, Navigation, Wrapper } from "./components"
-import { HomePage, SearchPage, LoginSignup, CartPage, CheckoutPage } from "./pages";
+import { BookPage, HomePage, SearchPage, LoginSignup, CartPage, CheckoutPage } from "./pages";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./assets/css/app.css"
 import { useState, useEffect } from "react"
@@ -43,6 +43,7 @@ function App() {
             <Route path="login" element={<LoginSignup />} />
             <Route path="explore" element={<SearchPage bookData={bookData} />} />
             <Route path="cart" element={<CartPage />} />
+            <Route path="book/:isbn" element={<BookPage />} />
             <Route path="" element={<HomePage />} />
             <Route path="checkout" element={<CheckoutPage />} />
             <Route path="*" element={<div>404</div>} />

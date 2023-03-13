@@ -32,6 +32,7 @@ const BookSearch = ({ bookData, setBookData }) => {
       const authors = item.volumeInfo.authors ?? [] ;
       const imageSource = item.volumeInfo.imageLinks ?? {
         thumbnail: defaultBookImg};
+        console.log(item)
       return {
         id: item.id,
         title: item.volumeInfo.title,
