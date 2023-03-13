@@ -47,7 +47,7 @@ const userSchema = new Schema({
     required: true
   },
   id: {
-    type:String,
+    type: String,
     required: true,
     unique: true,
     id: uuidv4(),
