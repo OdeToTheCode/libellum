@@ -44,6 +44,7 @@ function App() {
             <Route path="explore" element={<SearchPage bookData={bookData} />} />
             <Route path="cart" element={<CartPage />} />
             <Route path="" element={<HomePage />} />
+            <Route path="checkout" element={<CheckoutPage />} />
             <Route path="*" element={<div>404</div>} />
           </Routes>
         </div>
