@@ -14,13 +14,13 @@ function Navigation({ bookData, setBookData }) {
       <div>
       <Navbar bg="light" expand="lg">
         <Container fluid className="navBarContainer">
-          <Navbar.Brand href="#home"><h1>Libellum</h1></Navbar.Brand>
+          <Navbar.Brand href="/"><h1>Libellum</h1></Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="#home"><h4>Explore</h4></Nav.Link>
-              <Nav.Link href="#link"><h4>Login</h4></Nav.Link>
-              <Nav.Link href="#link"><img className="cart" src={cart}></img></Nav.Link>
+              <Nav.Link href="explore"><h4>Explore</h4></Nav.Link>
+              <Nav.Link href="link"><h4>Login</h4></Nav.Link>
+              <Nav.Link href="cart"><img className="cart" src={cart}></img></Nav.Link>
             </Nav>
           </Navbar.Collapse>
           <BookSearch bookData={bookData} setBookData={setBookData}/>
@@ -33,5 +33,5 @@ function Navigation({ bookData, setBookData }) {
 export default Navigation;
 
 
-
+// / f \ b
 

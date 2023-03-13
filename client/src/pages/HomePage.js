@@ -1,6 +1,9 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import { BookSearch } from "../components"
 import axios from "axios"
+
+
+
 
 const HomePage = () => {
   const [books, setBooks] = useState([])
@@ -17,6 +20,14 @@ const HomePage = () => {
     fetchBestSellers();
   }, []);
 
+  const onAddToCart = (book) => {
+    // setShoppingCart([...shoppingCart, book]);
+    const currentCart = JSON.parse(localStorage.getItem("cart")) || [];
+    localStorage.setItem("cart", JSON.stringify([...currentCart, book]));
+  }
+
+
+
   return (
     <>
 
@@ -25,10 +36,11 @@ const HomePage = () => {
         {loading && <p>Loading...</p>}
         {error && <p>{error}</p>}
         {books.map((book) => (
-          <div key={book.id} style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "10px", height: "200px", width: "150px" }}>
+          <div key={book.id} style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "10px", width: "150px" }}>
             <p style={{ textAlign: "center", margin: 0 }}>{book.volumeInfo.title}</p>
             <p style={{ textAlign: "center", margin: 0 }}>{book.volumeInfo.authors}</p>
             <img src={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.title} style={{ maxWidth: "150px" }} />
+            <button onClick = { ()=>onAddToCart(book)} >Add to Cart</button>
           </div>
         ))}
       </div>
