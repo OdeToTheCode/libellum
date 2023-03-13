@@ -1,65 +1,65 @@
 const {Schema, model} = require ("mongoose");
 const User = require("./User")
+const Book = require("./Book");
 const shoppingCartSchema = new Schema(
   {
 
-    User: {
-    type: String,
-    id: User.id,
+    user_id: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
     },
-    items: {
-      type: Array, 
-      name: String,
-      default: true,
-    itemDetails: new Schema ( 
-      {
-        id:{
-          type: String,
-          default: true,
-          minLength: 1,
-        },
-        selfLink: {
-          type: String,
-          default: true,
-          minLength: 1,
-        },
-        authors: {
-          type: String,
-          default: true,
-          minLength: 1,
-        },
-        catagories: {
-          type: String,
-          default: true,
-          minLength: 1,
-        },
-        description: {
-          type: String,
-          default: true,
-          minLength: 1,
-        },
-        imageLinks: {
-          type: Array,
-          default: true,
-          minLength: 0,
-        }
-      }
-    )
-    }
+    books: [
+      Book.schema
+    ]
+    // items: {
+    //   type: Array, 
+    //   name: string,
+    //   default: true,
+    // itemDetails: new Schema ( 
+    //   {
+    //     id:{
+    //       type: string,
+    //       default: true,
+    //       minLength: 1,
+    //     },
+    //     selfLink: {
+    //       type: string,
+    //       default: true,
+    //       minLength: 1,
+    //     },
+    //     authors: {
+    //       type: string,
+    //       default: true,
+    //       minLength: 1,
+    //     },
+    //     catagories: {
+    //       type: string,
+    //       default: true,
+    //       minLength: 1,
+    //     },
+    //     description: {
+    //       type: string,
+    //       default: true,
+    //       minLength: 1,
+    //     },
+    //     imageLinks: {
+    //       type: Array,
+    //       default: true,
+    //       minLength: 0,
+    //     }
+    //   }
+    // )
+    // }
   }
 );
 
+shoppingCart
+  .virtual("getShoppingCartLength")
+  .get(function () {
+    return this.books.length;
+  });
 
-shoppingCartSchema.virtual("shoppingCartLength")
-  .get(function() { return `${this.items.length}`})
-  .set(function (v) {
-    const shoppingCartLength = v;
-  })
+  const shoppingCart = model("shoppingCart", shoppingCartSchema);
 
+  module.exports = shoppingCart;
 
-
-
-
-const shoppingCart = model("shoppingCart", shoppingCartSchema);
-
-module.exports = shoppingCart;
