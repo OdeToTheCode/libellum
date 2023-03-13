@@ -4,37 +4,37 @@ const shoppingCartSchema = new Schema(
   {
 
     User: {
-    type: string,
+    type: String,
     id: User.id,
     },
     items: {
       type: Array, 
-      name: string,
+      name: String,
       default: true,
     itemDetails: new Schema ( 
       {
         id:{
-          type: string,
+          type: String,
           default: true,
           minLength: 1,
         },
         selfLink: {
-          type: string,
+          type: String,
           default: true,
           minLength: 1,
         },
         authors: {
-          type: string,
+          type: String,
           default: true,
           minLength: 1,
         },
         catagories: {
-          type: string,
+          type: String,
           default: true,
           minLength: 1,
         },
         description: {
-          type: string,
+          type: String,
           default: true,
           minLength: 1,
         },
@@ -49,13 +49,18 @@ const shoppingCartSchema = new Schema(
   }
 );
 
-shoppingCart
-  .virtual("getShoppingCartLength")
-  .get(function () {
-    return this.items.legnth;
-  });
 
-  const shoppingCart = model("shoppingCart", shoppingCartSchema);
+shoppingCartSchema.virtual("shoppingCartLength")
+  .get(function() { return `${this.items.length}`})
+  .set(function (v) {
+    const shoppingCartLength = v;
+  })
 
-  module.exports = shoppingCart;
+
+
+
+
+const shoppingCart = model("shoppingCart", shoppingCartSchema);
+
+module.exports = shoppingCart;
 
