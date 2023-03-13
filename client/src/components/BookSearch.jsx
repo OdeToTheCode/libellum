@@ -3,12 +3,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../assets/css/search.css"
 import Container from 'react-bootstrap/Container';
-import defaultBookImg from "../assets/images/book.jpeg";
+import {mapToBook} from "./Shared";
 
 
-function randomIntFromInterval(min, max) { 
-  return (Math.random() * (max - min + 1) + min).toFixed(2)
-}
+
 
 // BookSearch function and return below ---------------------------
 
@@ -27,29 +25,14 @@ const BookSearch = ({ bookData, setBookData }) => {
 
     const resp = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${search}`);
     const data = await resp.json();
-    const returnedData = data.items.map (item => {
-      const rndInt = randomIntFromInterval(10, 50)
-      const authors = item.volumeInfo.authors ?? [] ;
-      const imageSource = item.volumeInfo.imageLinks ?? {
-        thumbnail: defaultBookImg};
-        console.log(item)
-      return {
-        id: item.id,
-        title: item.volumeInfo.title,
-        subtitle: item.volumeInfo.subtitle,
-        authors: authors,
-        description: item.volumeInfo.description,
-        image: imageSource.thumbnail,
-        price: `$${rndInt}`,
-      }
-    })
+    const returnedData = data.items.map (item => mapToBook(item))
     setBookData(returnedData);
     console.log(bookData);
     redirectToPage();
   }
 
   const redirectToPage = () => {
-    navigate('explore'); // use history.push to redirect to another page
+    navigate('/explore'); // use history.push to redirect to another page
   }
 
 // returned JSX for search bar functionality -------------------------------
