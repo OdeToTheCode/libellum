@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../assets/css/search.css"
 import Container from 'react-bootstrap/Container';
 import defaultBookImg from "../assets/images/book.jpeg";
@@ -12,8 +13,8 @@ function randomIntFromInterval(min, max) {
 // BookSearch function and return below ---------------------------
 
 const BookSearch = ({ bookData, setBookData }) => {
-  
   const [search, setSearch] = useState("");
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     setSearch(e.target.value);
@@ -43,6 +44,11 @@ const BookSearch = ({ bookData, setBookData }) => {
     })
     setBookData(returnedData);
     console.log(bookData);
+    redirectToPage();
+  }
+
+  const redirectToPage = () => {
+    navigate('explore'); // use history.push to redirect to another page
   }
 
 // returned JSX for search bar functionality -------------------------------
@@ -61,7 +67,7 @@ const BookSearch = ({ bookData, setBookData }) => {
             />
           </div>
           <div className="form-group searchButton">
-            <button className="btn btn-primary">Search</button>
+            <button className="btn btn-primary" onClick={redirectToPage}>Search</button>
           </div>
         </form>
       </Container >
