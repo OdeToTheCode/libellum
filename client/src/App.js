@@ -43,7 +43,7 @@ function App() {
             <Route path="login" element={<LoginSignup />} />
             <Route path="explore" element={<SearchPage bookData={bookData} />} />
             <Route path="cart" element={<CartPage />} />
-            <Route path="book/:id" element={<BookPage />} />
+            <Route path="book/:isbn" element={<BookPage />} />
             <Route path="" element={<HomePage />} />
             <Route path="*" element={<div>404</div>} />
           </Routes>
