@@ -48,10 +48,11 @@ async function RMBook (req,res) {
   try{
     const cart = await shoppingcart.FindOne({user_id: req.params.id})
 
-    const book = await shoppingcart.FindOneAndDelete({
-      user_id: req.params.id,
-      Book_ISBN: req.params.ISBN
-    })
+    const book = await shoppingcart.FindByIdAndUpdate(
+      {user_id: req.params.id},
+      {$pull: {books: {ISBN: req.params.ISBN}}}
+      )
+    
 
     if(!cart){
       res.status(400).json({message:'could not find cart to delete book from'})
