@@ -53,9 +53,8 @@ const shoppingCartSchema = new Schema(
   }
 );
 
-shoppingCart
-  .virtual("getShoppingCartLength")
-  .get(function () {
+
+  shoppingCartSchema.virtual("shoppingcardlength").get(function () {
     return this.books.length;
   });
 

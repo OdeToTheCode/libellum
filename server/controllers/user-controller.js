@@ -1,4 +1,4 @@
-const { User } = require('../models');
+const { User, Book } = require('../models');
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 require("dotenv").config()
@@ -37,7 +37,6 @@ module.exports = {
     if (!user) return res.status(400).json({ message: 'Unable to update user' });
     res.status(200).json({ _id: user._id, email: user.email });
   },
-
 
   async authUser({ body }, res) {
 
