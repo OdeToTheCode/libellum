@@ -11,8 +11,8 @@ const bookSchema = new Schema({
     required: true,
   },
   
-  ISBN: {
-    type: Number,
+  ID: {
+    type: String,
     required: true,
   },
 
