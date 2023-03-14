@@ -1,7 +1,4 @@
 import { useState, useEffect } from "react"
-// import { useAppCtx } from "../utils/AppContext"
-// import useApi from "../utils/useApi"
-// import { BookSearch, Navigation } from "../components"
 import "../assets/css/explore.css"
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
@@ -12,6 +9,8 @@ const SearchPage = ({ bookData }) => {
 
   const [books, setBooks] = useState([])
   const [nfbooks, setNFBooks] = useState([])
+  const [abooks, setABooks] = useState([])
+  const [rbooks, setRBooks] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const navigate = useNavigate();
@@ -22,7 +21,6 @@ const SearchPage = ({ bookData }) => {
       const data = response.data;
       setBooks(data.items.map(item => mapToBook(item)));
     };
-
     fetchFiction();
   }, []);
 
@@ -32,8 +30,25 @@ const SearchPage = ({ bookData }) => {
       const data = response.data;
       setNFBooks(data.items.map(item => mapToBook(item)));
     };
-
     fetchNonfiction();
+  }, []);
+
+  useEffect(() => {
+    const fetchAction = async () => {
+      const response = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=subject:action`);
+      const data = response.data;
+      setABooks(data.items.map(item => mapToBook(item)));
+    };
+    fetchAction();
+  }, []);
+
+  useEffect(() => {
+    const fetchRomance = async () => {
+      const response = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=subject:romance`);
+      const data = response.data;
+      setRBooks(data.items.map(item => mapToBook(item)));
+    };
+    fetchRomance();
   }, []);
 
   const addToCart = (book) => {
@@ -79,8 +94,8 @@ const viewBook = (book) => {
           </div>
         )
       })}
-      <div>
-        <h2>Explore Fiction</h2>
+      <div style={{"margin-top": "30px"}}>
+        <h2 style={{"font-style": "italic"}}>Explore Fiction</h2>
         <div style={{ display: "flex", flexDirection: "row", overflowY: "hidden", minWidth: "100%" }}>
 
           {loading && <p>Loading...</p>}
@@ -88,14 +103,33 @@ const viewBook = (book) => {
           {books.map((fbook) => (
             <div key={fbook.id} style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "10px", width: "150px" }}>
               <img src={fbook.image} alt={fbook.title} style={{ maxWidth: "150px", cursor:"pointer" }} onClick={() =>viewBook(fbook)}/>
-              <h5 style={{ textAlign: "center", margin: 0 }}>{fbook.title}</h5>
-              <p style={{ textAlign: "center", margin: 0 }}>{fbook.authors}</p>
+              {/* <h5 style={{ textAlign: "center", margin: 0 }}>{fbook.title}</h5>
+              <p style={{ textAlign: "center", margin: 0 }}>{fbook.authors}</p> */}
             </div>
           ))}
         </div>
+        <hr></hr>
       </div>
-      <div>
-        <h2>Explore Non-Fiction</h2>
+
+      <div style={{"margin-top": "30px"}}>
+        <h2 style={{"font-style": "italic"}}>Explore Romance</h2>
+        <div style={{ display: "flex", flexDirection: "row", overflowY: "hidden", minWidth: "100%" }}>
+
+          {loading && <p>Loading...</p>}
+          {error && <p>{error}</p>}
+          {rbooks.map((rbook) => (
+            <div key={rbook.id} style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "10px", width: "150px" }}>
+              <img src={rbook.image} alt={rbook.title} style={{ maxWidth: "150px", cursor:"pointer" }} onClick={() =>viewBook(rbook)} />
+              {/* <h5 style={{ textAlign: "center", margin: 0 }}>{rbook.title}</h5>
+              <p style={{ textAlign: "center", margin: 0 }}>{rbook.authors}</p> */}
+            </div>
+          ))}
+        </div>
+        <hr></hr>
+      </div>
+
+      <div style={{"margin-top": "30px"}}>
+        <h2 style={{"font-style": "italic"}}>Explore Non-Fiction</h2>
         <div style={{ display: "flex", flexDirection: "row", overflowY: "hidden", minWidth: "100%" }}>
 
           {loading && <p>Loading...</p>}
@@ -103,11 +137,29 @@ const viewBook = (book) => {
           {nfbooks.map((nfbook) => (
             <div key={nfbook.id} style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "10px", width: "150px" }}>
               <img src={nfbook.image} alt={nfbook.title} style={{ maxWidth: "150px", cursor:"pointer" }} onClick={() =>viewBook(nfbook)} />
-              <h5 style={{ textAlign: "center", margin: 0 }}>{nfbook.title}</h5>
-              <p style={{ textAlign: "center", margin: 0 }}>{nfbook.authors}</p>
+              {/* <h5 style={{ textAlign: "center", margin: 0 }}>{nfbook.title}</h5>
+              <p style={{ textAlign: "center", margin: 0 }}>{nfbook.authors}</p> */}
             </div>
           ))}
         </div>
+        <hr></hr>
+      </div>
+
+      <div style={{"margin-top": "30px"}}>
+        <h2 style={{"font-style": "italic"}}>Explore Action</h2>
+        <div style={{ display: "flex", flexDirection: "row", overflowY: "hidden", minWidth: "100%" }}>
+
+          {loading && <p>Loading...</p>}
+          {error && <p>{error}</p>}
+          {abooks.map((abook) => (
+            <div key={abook.id} style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "10px", width: "150px" }}>
+              <img src={abook.image} alt={abook.title} style={{ maxWidth: "150px", cursor:"pointer" }} onClick={() =>viewBook(abook)} />
+              {/* <h5 style={{ textAlign: "center", margin: 0 }}>{abook.title}</h5>
+              <p style={{ textAlign: "center", margin: 0 }}>{abook.authors}</p> */}
+            </div>
+          ))}
+        </div>
+        <hr></hr>
       </div>
 
     </section>
