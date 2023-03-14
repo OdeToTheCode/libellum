@@ -24,7 +24,7 @@ function App() {
             <Route path="/cart" element={<CartPage />} />
             <Route path="/checkout" element={<CheckoutPage />} />
             <Route path="/explore" element={<SearchPage bookData={bookData} />} />
-            <Route path="/book/:id" element={<BookPage />} />
+            <Route path="/book/:isbn" element={<BookPage />} />
             <Route path="*" element={<div>404</div>} />
           </Routes>
         </div>
