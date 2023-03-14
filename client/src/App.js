@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AppProvider } from "./utils/AppContext";
 import { Navigation} from "./components"
 import { BookPage, HomePage, SearchPage, LoginSignup, CartPage, CheckoutPage } from "./pages";
