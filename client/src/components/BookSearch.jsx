@@ -31,7 +31,7 @@ const BookSearch = ({ bookData, setBookData }) => {
   }
 
   const redirectToPage = () => {
-    navigate('/explore'); // use history.push to redirect to another page
+    navigate('/explore', {replace: true}); // use history.push to redirect to another page
   }
 
 // returned JSX for search bar functionality -------------------------------

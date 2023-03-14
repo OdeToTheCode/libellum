@@ -14,22 +14,22 @@ function App() {
 
   return (
     <AppProvider>
-      <HashRouter>
+      <BrowserRouter>
         <Navigation bookData={bookData} setBookData={setBookData} />
         {/* <Wrapper> */}
         <div className="pt-3 px-4">
           <Routes>
-            <Route path="" element={<HomePage />} />
-            <Route path="login" element={<LoginSignup />} />
-            <Route path="cart" element={<CartPage />} />
-            <Route path="checkout" element={<CheckoutPage />} />
-            <Route path="explore" element={<SearchPage bookData={bookData} />} />
-            <Route path="book/:isbn" element={<BookPage />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<LoginSignup />} />
+            <Route path="/cart" element={<CartPage />} />
+            <Route path="/checkout" element={<CheckoutPage />} />
+            <Route path="/explore" element={<SearchPage bookData={bookData} />} />
+            <Route path="/book/:id" element={<BookPage />} />
             <Route path="*" element={<div>404</div>} />
           </Routes>
         </div>
         {/* </Wrapper> */}
-      </HashRouter>
+      </BrowserRouter>
     </AppProvider>
   );
 }
