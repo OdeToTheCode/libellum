@@ -2,7 +2,6 @@ import { useState, useEffect ,useContext } from "react"
 import cookie from "js-cookie"
 
 
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/global.css'
 

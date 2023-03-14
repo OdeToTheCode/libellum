@@ -54,11 +54,11 @@ const shoppingCartSchema = new Schema(
 );
 
 
-  shoppingCartSchema.virtual("shoppingcardlength").get(function () {
+  shoppingCartSchema.virtual("shoppingcartlength").get(function () {
     return this.books.length;
   });
 
-  const shoppingCart = model("shoppingCart", shoppingCartSchema);
+  const ShoppingCart = model("ShoppingCart", shoppingCartSchema);
 
-  module.exports = shoppingCart;
+  module.exports = ShoppingCart;
 
