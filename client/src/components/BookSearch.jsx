@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../assets/css/search.css"
 import Container from 'react-bootstrap/Container';
 import {mapToBook} from "./Shared";
 
@@ -39,9 +38,9 @@ const BookSearch = ({ bookData, setBookData }) => {
 
   return (
     <div>
-      <Container fluid className="searchBar">
-        <form onSubmit={update} className="mb-2 searchEl">
-          <div className="form-group mb-2 searchText">
+      <Container fluid style={{display: "flex"}}>
+        <form onSubmit={update} className="mb-2" style={{width: "100%", display: "flex", "flex-direction": "row", "flex-wrap": "nowrap", "justify-content": "space-between", margin: "30px" }}>
+          <div className="form-group mb-2" style={{ width: "100%"}}>
             <input
               type="text"
               className="form-control"
