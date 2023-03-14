@@ -28,10 +28,10 @@ export const AppProvider = ({children}) => {
 
   useEffect(() => {
     verifyUser()
-  },[])
+  },[user])
 
   return (
-    <AppContext.Provider value={{ user, location, setLocation }}>
+    <AppContext.Provider value={{ user, setUser, location, setLocation }}>
       {children}
     </AppContext.Provider>
   )

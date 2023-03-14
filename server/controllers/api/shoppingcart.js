@@ -11,7 +11,7 @@ router.get("/", (req,res) => {
 
 async function getACart (err,res){
   try{
-    const cart = await shoppingcart.findOne({user_id: req.params.id}).populate(`books`);
+    const cart = await shoppingcart.findOne({user_id: req.params._id}).populate(`books`);
 
     if(!cart){
       res.status(400).json({message:"could not pull cart with specified id"})
@@ -46,11 +46,11 @@ async function addABook (req,res){
 
 async function RMBook (req,res) {
   try{
-    const cart = await shoppingcart.FindOne({user_id: req.params.id})
+    const cart = await shoppingcart.FindOne({user_id: req.params._id})
 
     const book = await shoppingcart.FindByIdAndUpdate(
-      {user_id: req.params.id},
-      {$pull: {books: {ISBN: req.params.ISBN}}}
+      {user_id: req.params._id},
+      {$pull: {books: {ID: req.params.ID}}}
       )
     
 

@@ -72,6 +72,10 @@ module.exports = {
     if( !user ) return res.status(401).json({msg: "un-authorized"})
     
     return res.status(200).json({ _id: user._id, email: user.email})
+  },
+
+  async logoutUser(req,res) {
+    res.status(200).clearCookie('auth-token').json({message: 'User logged out'})
   }
 
 };
