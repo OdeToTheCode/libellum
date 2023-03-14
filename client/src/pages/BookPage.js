@@ -43,11 +43,11 @@ const BookPage = () => {
             <h3 style={{ textAlign: "left", margin: 0 }}>Written By:&nbsp;&nbsp;{displayAuthors(book)}</h3>
             <p style={{ textAlign: "left", margin: 0 }}>
               <span dangerouslySetInnerHTML={{__html:book.description}}></span></p>
-            <p style={{ textAlign: "left", margin: 0 }}>{book.language}</p>
-            <p style={{ textAlign: "left", margin: 0 }}>{book.maturity}</p>
+            <p style={{ textAlign: "left", margin: 0 }}>Language: {book.language}</p>
+            <p style={{ textAlign: "left", margin: 0 }}>Maturity Rating: {book.maturity}</p>
             <p style={{ textAlign: "left", margin: 0 }}>{book.pageCount} pages</p>
-            <p style={{ textAlign: "left", margin: 0 }}>{book.pubDate}</p>
-            <p style={{ textAlign: "left", margin: 0 }}>{book.publisher}</p>
+            <p style={{ textAlign: "left", margin: 0 }}>Date Published: {book.pubDate}</p>
+            <p style={{ textAlign: "left", margin: 0 }}>Publisher: {book.publisher}</p>
             <p style={{ textAlign: "left", margin: 0 }}>Categories: {book.categories}</p>
             <p style={{ textAlign: "left", margin: 0 }}>ISBN: {book.isbn}</p>
             </div>
