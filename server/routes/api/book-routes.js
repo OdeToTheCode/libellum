@@ -12,6 +12,6 @@ router.route("/:id").get(getACart)
 
 router.route("/:id").get(getACart).post(addABook);
 
-router.route("/:id/:ISBN").get(getACart).delete(RMBook)
-
+router.route("/:id/:id").get(getACart).delete(RMBook)
+//cart id, then book id which is in the cart. Both have to match
 module.exports = router;

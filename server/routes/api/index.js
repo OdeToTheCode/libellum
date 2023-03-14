@@ -4,5 +4,7 @@ const bookRoutes = require('./book-routes');
 
 router.use('/search', bookRoutes);
 
+router.use("/user", userRoutes);
+
 module.exports = router;
 
