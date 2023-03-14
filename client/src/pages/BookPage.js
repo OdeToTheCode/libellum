@@ -1,60 +1,59 @@
-import { useState, useEffect } from "react"
-import axios from "axios"
-import { useParams } from 'react-router';
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { useParams } from "react-router";
 import { mapToBook, displayAuthors } from "../components/Shared";
-
-
+import { Container, Row, Col, Image, Button } from "react-bootstrap";
 
 const BookPage = () => {
-
-  const params = useParams()
-  const [book, setBook] = useState([])
+  const params = useParams();
+  const [book, setBook] = useState([]);
 
   const fetchBook = async (bookID) => {
-    const response = await axios.get(`https://www.googleapis.com/books/v1/volumes/${bookID}`);
+    const response = await axios.get(
+      `https://www.googleapis.com/books/v1/volumes/${bookID}`
+    );
     const data = response.data;
-    console.log(data)
+    console.log(data);
     setBook(mapToBook(data));
-  }
+  };
 
   const addToCart = (book) => {
     console.log(`Navigating to cart with book ${book.isbn}`);
-
-  }
+  };
 
   useEffect(() => {
     fetchBook(params.isbn);
   }, []);
 
   return (
-    <div>
-      {/* {books.map((book) => ( */}
-      <div>
-        <div key={book.id} style={{ display: "flex", flexDirection: "row", alignItems: "center", padding: "10px", width: "90%" }}>
-          <img src={book.largeImg} alt={book.title} style={{ maxWidth: "350px" }} />
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "10px" }}>
-            <h1 style={{ textAlign: "center", margin: 0 }}>{book.title}</h1>
-            <h2 style={{ textAlign: "center", margin: 0 }}>{book.subtitle}</h2>
-            <p style={{ textAlign: "left", margin: 0 }}>{book.price}</p>
-            <button onClick={()=>addToCart(book)}>Add to Cart</button>
-          </div>
+    <Container className="mt-5">
+      <Row>
+        <Col md={4}>
+          <Image src={book.largeImg} alt={book.title} fluid />
+        </Col>
+        <Col md={8}>
+          <h1>{book.title}</h1>
+          <h2>{book.subtitle}</h2>
+          <p>{book.price}</p>
+          <Button variant="primary" onClick={() => addToCart(book)}>
+            Add to Cart
+          </Button>
+          <hr />
+          <h3>Written By:&nbsp;&nbsp;{displayAuthors(book)}</h3>
+          <p>
+            <span dangerouslySetInnerHTML={{ __html: book.description }}></span>
+          </p>
+          <p>{book.language}</p>
+          <p>{book.maturity}</p>
+          <p>{book.pageCount} pages</p>
+          <p>{book.pubDate}</p>
+          <p>{book.publisher}</p>
+          <p>Categories: {book.categories}</p>
+          <p>ISBN: {book.isbn}</p>
+        </Col>
+      </Row>
+    </Container>
+  );
+};
 
-          </div>
-            <h3 style={{ textAlign: "left", margin: 0 }}>Written By:&nbsp;&nbsp;{displayAuthors(book)}</h3>
-            <p style={{ textAlign: "left", margin: 0 }}>
-              <span dangerouslySetInnerHTML={{__html:book.description}}></span></p>
-            <p style={{ textAlign: "left", margin: 0 }}>Language: {book.language}</p>
-            <p style={{ textAlign: "left", margin: 0 }}>Maturity Rating: {book.maturity}</p>
-            <p style={{ textAlign: "left", margin: 0 }}>{book.pageCount} pages</p>
-            <p style={{ textAlign: "left", margin: 0 }}>Date Published: {book.pubDate}</p>
-            <p style={{ textAlign: "left", margin: 0 }}>Publisher: {book.publisher}</p>
-            <p style={{ textAlign: "left", margin: 0 }}>Categories: {book.categories}</p>
-            <p style={{ textAlign: "left", margin: 0 }}>ISBN: {book.isbn}</p>
-            </div>
-        </div>
-
-
-      );
-}
-
-      export default BookPage;
+export default BookPage;
