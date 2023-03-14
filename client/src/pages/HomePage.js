@@ -39,7 +39,7 @@ const HomePage = () => {
 
   const viewBook = (book) => {
     console.log(`Navigating to view book page with book ${book.id}`);
-    navigate('/book/' + book.id)
+    navigate('/book/' + book.id,{replace:true})
   }
 
 
