@@ -1,6 +1,6 @@
 import { useState } from "react"
 import cookie from "js-cookie"
-import StripeCheckout from 'react-stripe-checkout';
+// import StripeCheckout from 'react-stripe-checkout';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/global.css'
@@ -80,7 +80,7 @@ const Checkout = (props) => {
             </ul>
             <h4>Total: ${total}</h4>
           </div>
-          <div className="col-3">
+          {/* <div className="col-3">
             <StripeCheckout
               stripeKey="-u sk_test_51MlE8WGRzJAVSzeYi0auFvieadTtZFbniBzyDwAdyBL5LzpfdzLLrTvvV9qn002AFD7dHxCgrw8FmV4VzCsrgFRk00qmhAx4v1:"
               token={handleToken}
@@ -88,7 +88,7 @@ const Checkout = (props) => {
               currency="USD"
               email={props.email}
             />
-          </div>
+          </div> */}
         </div>
       </div>
     </>
