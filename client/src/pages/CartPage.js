@@ -16,12 +16,12 @@ const Cart = (props) => {
   const { user } = useAppCtx()
 
   const fetchCart = async () => {
-    const response = await axios.get("/api/cart/6411f6f1d1536e3a7b7566b6");
+    const response = await axios.get("/api/cart/64121d65c9487f50a48ce8f2");
     setCart(response.data.books);
   }
 
   const deleteBook = async (id) => {
-    const response = await axios.delete(`/api/cart/6411f6f1d1536e3a7b7566b6/${id}`);
+    const response = await axios.delete(`/api/cart/64121d65c9487f50a48ce8f2/${id}`);
     setCart(response.data.books);
   }
 
