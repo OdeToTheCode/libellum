@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react"
 import cookie from "js-cookie"
-
+import { useNavigate } from "react-router-dom"
 import axios from "axios"
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -8,21 +8,26 @@ import '../styles/global.css'
 
 const Cart = (props) => {
   const [cart, setCart] = useState([]);
-  //   useEffect(() => {
-  //     const shoppingCart = JSON.parse(localStorage.getItem("cart"));
-  //     setCart(shoppingCart);
-  //   }, [cart, setCart]);
-
-
+  const navigate = useNavigate()
 
   const fetchCart = async () => {
-    const response = await axios.get("/api/cart/641122fd28efa32510553639");
+    const response = await axios.get("/api/cart/6411edbaee3a5f3e641b0f66");
+    setCart(response.data.books);
+  }
+
+  const deleteBook = async (id) => {
+    const response = await axios.delete(`/api/cart/6411edbaee3a5f3e641b0f66/${id}`);
     setCart(response.data.books);
   }
 
   useEffect(() => {
     fetchCart();
   }, [setCart, cart])
+
+
+  const redirectToPage = () => {
+    navigate('/checkout', {replace: true}); 
+  }    
 
   const renderCart = () => {
     return cart.map((item) => {
@@ -39,7 +44,9 @@ const Cart = (props) => {
               <div class="col-3">
 
                 <h3>${item.price}</h3>
-                <input type="checkbox" name="delete" value="delete" />
+                <button onClick={() => deleteBook(item._id)}>delete</button>
+
+                <button onClick={redirectToPage}>test</button>
 
               </div>
             </div>
@@ -48,6 +55,11 @@ const Cart = (props) => {
       )
     })
   }
+
+  // const deleteBook = async (bookid.ID) => {
+  //   const response = await axios.delete(`/api/cart/641122fd28efa32510553639/${item.ID}`);
+  //   setCart(response.data.books);
+  // }
 
   return (
     <>
