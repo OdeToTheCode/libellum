@@ -43,7 +43,6 @@ function Navigation({ bookData, setBookData }) {
                 <Nav.Link href="/"><h4 style={{color: "white"}}>Home</h4></Nav.Link>
                 <Nav.Link href="/explore"><h4 style={{color: "white"}}>Explore</h4></Nav.Link>
                 <Nav.Link href="/login"><h4 style={{color: "white"}}>Login</h4></Nav.Link>
-                <Nav.Link href="/cart"><img src={cart} style={{width: "40px"}}></img></Nav.Link>
               </Nav>
             </Navbar.Collapse>
             <BookSearch bookData={bookData} setBookData={setBookData} />
