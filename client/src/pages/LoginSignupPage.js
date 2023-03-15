@@ -166,7 +166,7 @@ const LoginSignup = (props) => {
           </div>
         </div>
       </>
-      )};
+      )}
 
     {loginResult === "success"  && (
       <>

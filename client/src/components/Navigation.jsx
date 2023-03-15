@@ -7,6 +7,8 @@ import { useState, useEffect } from "react"
 import { useAppCtx } from "../utils/AppContext"
 
 
+
+
 function Navigation({ bookData, setBookData }) {
 
   const { user, setUser, location } = useAppCtx();
@@ -34,7 +36,7 @@ function Navigation({ bookData, setBookData }) {
       { !ready ? (
         <Navbar bg="light" expand="lg">
           <Container fluid style={{"background-color": "black"}}>
-            <Navbar.Brand href="/"><h1 style={{"font-size": "70px", color: "#C1A99A"}}>Libellum</h1></Navbar.Brand>
+            <Navbar.Brand href="/"><h1 style={{"font-size": "80px", fontFamily: "homemade apple", color: "#C1A99A", "margin-top": "20px", "margin-left": "20px"}}>Libellum</h1></Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">

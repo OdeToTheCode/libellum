@@ -9,7 +9,7 @@ async function getACart (req,res){
     const cart = await ShoppingCart.findOne({user_id: req.params.id}).populate(`books`);
 
     if(!cart){
-      res.status(400).json({message:"could not pull cart with specified id"})
+      return res.status(400).json({message:"could not pull cart with specified id"})
     }
     res.status(200).json(cart)
   }catch(err){
