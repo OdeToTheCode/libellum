@@ -5,7 +5,7 @@ import cart from "../assets/images/cart.png";
 import BookSearch from "./BookSearch";
 import { useState, useEffect } from "react"
 import { useAppCtx } from "../utils/AppContext"
-
+import '../assets/css/app.css';
 
 
 
@@ -36,7 +36,7 @@ function Navigation({ bookData, setBookData }) {
       { !ready ? (
         <Navbar bg="light" expand="lg">
           <Container fluid style={{"background-color": "black"}}>
-            <Navbar.Brand href="/"><h1 style={{"font-size": "80px", fontFamily: "homemade apple", color: "#C1A99A", "margin-top": "20px", "margin-left": "20px"}}>Libellum</h1></Navbar.Brand>
+            <Navbar.Brand href="/"><h1 style={{"font-size": "80px", "font-family": "homemade apple", color: "#C1A99A", "margin-top": "20px", "margin-left": "20px"}}>Libellum</h1></Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
