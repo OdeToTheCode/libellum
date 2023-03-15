@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useResolvedPath } from "react-router-dom";
 import { mapToBook, displayAuthors } from "../components/Shared";
-import { Container, Row, Col, Image, Button } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
+import { useAppCtx } from "../utils/AppContext";
 
 const SearchPage = ({ bookData }) => {
-
+  const { user } = useAppCtx();
   const [books, setBooks] = useState([])
   const [nfbooks, setNFBooks] = useState([])
   const [abooks, setABooks] = useState([])
@@ -50,8 +51,21 @@ const SearchPage = ({ bookData }) => {
     fetchRomance();
   }, []);
 
+
+
   const addToCart = (book) => {
     console.log(`Navigating to cart with book ${book.id}`);
+    if (!user) {
+      navigate('/login', { replace: true })
+    }
+    //need to add the book to the user's cart
+    return axios.post(`https://jsonplaceholder.typicode.com/users`, { user, book })
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      }),
+      navigate('/cart/', { replace: true })
+
   }
 
   const viewBook = (book) => {

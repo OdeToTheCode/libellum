@@ -27,7 +27,7 @@ const seedUsers = [
     state: "MN",
     zip_code: "09324",
     email: "test@testing.com",
-    password: "Test1234",
+    password: "$2b$10$PdCcjUDFGjrWRRyQ/cuM6.fVI.H1f2r8K4RxDn52cwJdosk7TXDXe",
   },
 ]
 
