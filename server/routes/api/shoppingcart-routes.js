@@ -4,7 +4,8 @@ const router = require('express').Router();
 const { addABook, RMBook, getACart } = require('../../controllers/shoppingcart');
 
 // Declare the routes that point to the controllers above
-router.route('/:id').post(addABook).get(getACart);
+router.route('/:id').post(addABook);
+router.route('/:id').get(getACart);
 router.route('/:userid/:bookid').delete(RMBook)
 
 module.exports = router;
