@@ -15,6 +15,15 @@ Explore page
 
 A book store webpage.
 
+## Tech Stack
+Technologies used:
+React
+Express
+MongoDB
+React Bootstrap
+Google Books API
+Axios
+
 ## Install 
 
 npm install
