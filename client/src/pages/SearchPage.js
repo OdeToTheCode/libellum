@@ -92,7 +92,7 @@ const SearchPage = ({ bookData }) => {
                   <div><h4>{book.subtitle}</h4></div>
                 </Col>
                 <Col md={4}>
-                  <div>{book.price}</div>
+                  <div style={{color: "white"}}>{book.price}</div>
                   <button onClick={() => addToCart(book)}>Add to Cart</button>
                 </Col>
                 <div style={{ display: "flex", "flex-direction": "column" }}>
