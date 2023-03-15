@@ -74,6 +74,18 @@ module.exports = {
     return res.status(200).json({ _id: user._id, email: user.email})
   },
 
+  async getUserId(req,res){
+
+    var userEmail = req.params.email;
+
+    if(!userEmail) return res.status(400).json({message: "no email provided"});
+
+    var user = await User.findOne({ email: userEmail })
+
+
+    return res.status(200).json({user: user._id})
+  },
+
   async logoutUser(req,res) {
     res.status(200).clearCookie('auth-token').json({message: 'User logged out'})
   }
