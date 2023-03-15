@@ -12,16 +12,15 @@ const Cart = (props) => {
   const [cart, setCart] = useState([]);
   const navigate = useNavigate()
   const [total, setTotal] = useState(0);
-
   const { user } = useAppCtx()
 
   const fetchCart = async () => {
-    const response = await axios.get("/api/cart/64121d65c9487f50a48ce8f2");
+    const response = await axios.get(`/api/cart/${user._id}`);
     setCart(response.data.books);
   }
 
   const deleteBook = async (id) => {
-    const response = await axios.delete(`/api/cart/64121d65c9487f50a48ce8f2/${id}`);
+    const response = await axios.delete(`/api/cart/${user._id}/${id}`);
     setCart(response.data.books);
   }
 

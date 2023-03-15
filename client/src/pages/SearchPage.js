@@ -60,7 +60,7 @@ const SearchPage = ({ bookData }) => {
       navigate('/login', { replace: true })
     }
     //need to add the book to the user's cart
-    return axios.post(`/api/cart/64121d65c9487f50a48ce8f2`, { book })
+    return axios.post(`/api/cart/${user._id}`, { book })
       .then(res => {
         console.log(res);
         console.log(res.data);
@@ -101,7 +101,7 @@ const SearchPage = ({ bookData }) => {
                     <div >{displayAuthors(book)}
                     </div>
                   </div>
-                  <div>{book.description}</div>
+                  <div style={{color: 'white'}}>{book.description}</div>
                 </div>
                 <div style={{ margin: "30px" }}>
                   <hr></hr>

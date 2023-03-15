@@ -28,7 +28,7 @@ const mapToBook = (item) => {
   const isbnSource = item.volumeInfo.industryIdentifiers ??  [];
   const isbn13s = isbnSource.filter(isbn => isbn.type=="ISBN_13");
   const isbn = isbn13s.length > 0 ? isbn13s[0].identifier : "";
-  console.log(item)
+  // console.log(item)
 
   return {
     id: item.id,

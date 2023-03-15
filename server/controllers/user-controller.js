@@ -1,4 +1,4 @@
-const { User, Book } = require('../models');
+const { User, ShoppingCart } = require('../models');
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 require("dotenv").config()
@@ -11,7 +11,8 @@ module.exports = {
 
     try {
       const userToInsert = {email: body.email, password: password }
-      const user = await User.create(userToInsert);
+      const user = await User.create(userToInsert)
+      const shoppingCart = await ShoppingCart.create({user_id: user._id})
       res.status(200).json({ _id: user._id, email: user.email });
     } catch(err){
       return res.status(400).json({ message: 'Unable to create user' })
