@@ -52,13 +52,13 @@ function Navigation({ bookData, setBookData }) {
         ):(
           <Navbar bg="light" expand="lg">
           <Container fluid style={{"background-color": "black"}}>
-            <Navbar.Brand href="/"><h1 style={{"font-size": "70px", color: "#C1A99A"}}>Libellum</h1></Navbar.Brand>
+            <Navbar.Brand href="/"><h1 style={{"font-size": "80px", "font-family": "homemade apple", color: "#C1A99A", "margin-top": "20px", "margin-left": "20px"}}>Libellum</h1></Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
                 <Nav.Link href="/"><h4 style={{color: "white"}}>Home</h4></Nav.Link>
                 <Nav.Link href="/explore"><h4 style={{color: "white"}}>Explore</h4></Nav.Link>
-                <Nav.Link onClick={logout}><h4 style={{color: "white"}}>LOGOUT</h4></Nav.Link>
+                <Nav.Link onClick={logout}><h4 style={{color: "white"}}>Logout</h4></Nav.Link>
                 <Nav.Link href="/cart"><img src={cart} style={{width: "40px"}}></img></Nav.Link>
               </Nav>
             </Navbar.Collapse>
