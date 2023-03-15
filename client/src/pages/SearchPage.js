@@ -60,7 +60,7 @@ const SearchPage = ({ bookData }) => {
       navigate('/login', { replace: true })
     }
     //need to add the book to the user's cart
-    return axios.post(`https://jsonplaceholder.typicode.com/users`, { user, book })
+    return axios.post(`/api/cart/64121d65c9487f50a48ce8f2`, { book })
       .then(res => {
         console.log(res);
         console.log(res.data);
