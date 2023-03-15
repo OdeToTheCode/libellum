@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react"
 import cookie from "js-cookie"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
+import StripeCheckout from "react-stripe-checkout"
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/global.css'
@@ -9,20 +10,63 @@ import '../styles/global.css'
 const Cart = (props) => {
   const [cart, setCart] = useState([]);
   const navigate = useNavigate()
+  const [total, setTotal] = useState(0);
 
   const fetchCart = async () => {
-    const response = await axios.get("/api/cart/6411edbaee3a5f3e641b0f66");
+    const response = await axios.get("/api/cart/6411f6f1d1536e3a7b7566b6");
     setCart(response.data.books);
   }
 
   const deleteBook = async (id) => {
-    const response = await axios.delete(`/api/cart/6411edbaee3a5f3e641b0f66/${id}`);
+    const response = await axios.delete(`/api/cart/6411f6f1d1536e3a7b7566b6/${id}`);
     setCart(response.data.books);
   }
 
+  const calculateTotal = () => {
+    let newTotal = 0;
+    cart.forEach((item) => {
+      newTotal += item.price;
+    });
+    setTotal(newTotal);
+  };
+
+  const handleToken = (token) => {
+    const items = cart.map(item => {
+      return {
+        price_data: {
+          currency: 'usd',
+          product_data: {
+            name: item.title,
+          },
+          unit_amount: item.price * 100, // convert to cents
+        },
+        quantity: 1,
+      };
+    });
+
+    fetch('/api/create-checkout-session', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        items: items,
+        email: token.email
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+      window.location.href = data.url;
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+
+
   useEffect(() => {
     fetchCart();
-  }, [setCart, cart])
+  }, [setCart])
 
 
   const redirectToPage = () => {
@@ -30,40 +74,40 @@ const Cart = (props) => {
   }    
 
   const renderCart = () => {
-    return cart.map((item) => {
-      return (
-        <>
-          <div class="container">
-            <div class="row">
-              <div class="col-9">
+    return (
+      <>
+        <div className="container">
+          <div className="row">
+            <h3>Items in Cart</h3>
+            {cart.map((item) => (
+              <div className="col-12 col-md-6 col-lg-4 mb-4" key={item._id}>
                 <img src={item.image} alt={item.title} />
                 <h1>{item.title}</h1>
                 <h2>{item.author}</h2>
-
+                <div className="d-flex justify-content-between align-items-center">
+                  <h3>${item.price}</h3>
+                  <button onClick={() => deleteBook(item._id)}>delete</button>
+                </div>
               </div>
-              <div class="col-3">
-
-                <h3>${item.price}</h3>
-                <button onClick={() => deleteBook(item._id)}>delete</button>
-
-                <button onClick={redirectToPage}>test</button>
-
-              </div>
+            ))}
+            <h4>Total: ${total}</h4>
+          </div>
+            <div className="col-12 col-md-6">
+              <StripeCheckout
+                stripeKey="pk_test_51MlE8WGRzJAVSzeYjpyutb8YPU98wyWf5kPdpaLWSZEVqM8LbSrvaUTo9iPJE4sIrOccVCyNCx8I3fmbFRyTG5qe007VuHsE3A"
+                token={handleToken}
+                amount={total * 100} // convert to cents
+                currency="USD"
+                email={props.email}
+              />
             </div>
           </div>
-        </>
-      )
-    })
-  }
-
-  // const deleteBook = async (bookid.ID) => {
-  //   const response = await axios.delete(`/api/cart/641122fd28efa32510553639/${item.ID}`);
-  //   setCart(response.data.books);
-  // }
+      </>
+    );
+  };
 
   return (
     <>
-      <h1 style={{"text-align": "center"}}>Your Cart</h1>
       <div>
         {renderCart()}
       </div>
