@@ -38,14 +38,14 @@ const seedBooks = [
     author: "MoeFoe",
     ID:"W_hUEAAAQBAJ",
     price:"20.21",
-    category: "Fiction",
+    image: "http://books.google.com/books/content?id=W_hUEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
   },
   {
     title:"B.R.U.H",
     author: "Markus Prime",
     ID:"AU-0DAEACAAJ",
     price:"23.64",
-    category: "African Americans in art",
+    image: "http://books.google.com/books/content?id=AU-0DAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
   },
 ]
 
