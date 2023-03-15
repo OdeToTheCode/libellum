@@ -21,6 +21,7 @@ export const AppProvider = ({children}) => {
       })
       const result = await query.json()
       if( result ){
+        console.log("logged in user", result)
         setUser(result)
       }
     }

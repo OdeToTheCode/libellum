@@ -55,6 +55,7 @@ const SearchPage = ({ bookData }) => {
 
   const addToCart = (book) => {
     console.log(`Navigating to cart with book ${book.id}`);
+    console.log(user)
     if (!user) {
       navigate('/login', { replace: true })
     }
