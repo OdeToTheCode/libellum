@@ -1,8 +1,9 @@
-import { useState, useEffect, useContext } from "react"
+import { useState, useEffect } from "react"
 import cookie from "js-cookie"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import StripeCheckout from "react-stripe-checkout"
+import { useAppCtx } from "../utils/AppContext"
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/global.css'
@@ -11,6 +12,8 @@ const Cart = (props) => {
   const [cart, setCart] = useState([]);
   const navigate = useNavigate()
   const [total, setTotal] = useState(0);
+
+  const { user } = useAppCtx()
 
   const fetchCart = async () => {
     const response = await axios.get("/api/cart/6411f6f1d1536e3a7b7566b6");
@@ -92,15 +95,18 @@ const Cart = (props) => {
             ))}
             <h4>Total: ${total}</h4>
           </div>
-            <div className="col-12 col-md-6">
-              <StripeCheckout
-                stripeKey="pk_test_51MlE8WGRzJAVSzeYjpyutb8YPU98wyWf5kPdpaLWSZEVqM8LbSrvaUTo9iPJE4sIrOccVCyNCx8I3fmbFRyTG5qe007VuHsE3A"
-                token={handleToken}
-                amount={total * 100} // convert to cents
-                currency="USD"
-                email={props.email}
-              />
-            </div>
+
+          { user !== undefined && (
+              <div className="col-12 col-md-6">
+                <StripeCheckout
+                  stripeKey="pk_test_51MlE8WGRzJAVSzeYjpyutb8YPU98wyWf5kPdpaLWSZEVqM8LbSrvaUTo9iPJE4sIrOccVCyNCx8I3fmbFRyTG5qe007VuHsE3A"
+                  token={handleToken}
+                  amount={total * 100} // convert to cents
+                  currency="USD"
+                  email={props.email}
+                />
+              </div>
+          )}
           </div>
       </>
     );
